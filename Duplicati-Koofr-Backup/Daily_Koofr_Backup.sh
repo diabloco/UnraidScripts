@@ -44,16 +44,10 @@ sleep 30
 # 2. LOGIN AND TRIGGER BACKUP (SECURE API CALL)
 echo "2. Logging in to Duplicati API..."
 
-# Prepare JSON payload in a variable to hide it from 'ps' process list
-JSON_PAYLOAD=$(cat <<EOF
-{"Password": "$DUPLICATI_PASS"}
-EOF
-)
-
-# Request the Access Token
-TOKEN=$(curl -s -X POST http://localhost:8200/api/v1/auth/login \
+# Request the Access Token securely by feeding data through standard input to hide it from the ps process list
+TOKEN=$(echo "{\"Password\": \"$DUPLICATI_PASS\"}" | curl -s -X POST http://localhost:8200/api/v1/auth/login \
   -H "Content-Type: application/json" \
-  -d "$JSON_PAYLOAD" | \
+  -d @- | \
   grep -o '"AccessToken":"[^"]*"' | cut -d'"' -f4)
 
 if [ ! -z "$TOKEN" ]; then
