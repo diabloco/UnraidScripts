@@ -1,0 +1,6 @@
+# Ignore any file ending in _secret.conf
+*_secret.conf
+
+# Ignore Mac system junk
+.DS_Store
+Duplicati-Koofr-Backup/Daily_Koofr_Backups_secret.conf 
