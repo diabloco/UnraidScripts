@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1. Define where the secret file is
-SECRET_FILE="/boot/config/scripts/secrets/Daily_Koofr_Backups_secret.conf"
+SECRET_FILE="/boot/config/scripts/secrets/Duplicati_Backup_secret.conf"
 
 # 2. Check if it exists
 if [ -f "$SECRET_FILE" ]; then
